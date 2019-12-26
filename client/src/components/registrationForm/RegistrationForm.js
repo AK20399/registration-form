@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class RegistrationForm extends Component {
 	constructor(props) {
@@ -23,6 +24,11 @@ class RegistrationForm extends Component {
 			number: this.state.number,
 		};
 		console.log(registrationData);
+
+		// axios
+		// 	.post('/registration', registrationData)
+		// 	.then(data => console.log(data))
+		// 	.catch(error => console.log(error));
 	}
 
 	render() {
