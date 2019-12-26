@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
 		return res.status(400).json(errors);
 	}
 	Registration_model.findOne({
-		email,
+		email: req.body.email,
 	}).then(data => {
 		if (data) {
 			errors.email = 'Register Already';

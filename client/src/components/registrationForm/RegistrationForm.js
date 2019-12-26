@@ -23,15 +23,19 @@ class RegistrationForm extends Component {
 			email: this.state.email,
 			number: this.state.number,
 		};
-		console.log(registrationData);
+		// console.log(registrationData);
 
-		// axios
-		// 	.post('/registration', registrationData)
-		// 	.then(data => console.log(data))
-		// 	.catch(error => console.log(error));
+		axios
+			.post('/register', registrationData)
+			.then(data => console.log(data.data))
+			.catch(error => {
+				this.setState({ errors: error.response.data });
+			});
 	}
 
 	render() {
+		const { errors } = this.state;
+
 		return (
 			<form className='contact100-form validate-form' onSubmit={this.onSubmit}>
 				<span className='contact100-form-title'>
@@ -41,6 +45,14 @@ class RegistrationForm extends Component {
 				<div
 					className='wrap-input100 validate-input bg1'
 					data-validate='Please Type Your Name'>
+					{errors.name && (
+						<span
+							className='label-input100'
+							style={{ color: 'red', fontSize: '12px' }}>
+							{errors.name}
+							<br />
+						</span>
+					)}
 					<span className='label-input100'>FULL NAME *</span>
 					<input
 						className='input100'
@@ -55,6 +67,14 @@ class RegistrationForm extends Component {
 				<div
 					className='wrap-input100 validate-input bg1'
 					data-validate='Enter Your Email (e@a.x)'>
+					{errors.email && (
+						<span
+							className='label-input100'
+							style={{ color: 'red', fontSize: '12px' }}>
+							{errors.email}
+							<br />
+						</span>
+					)}
 					<span className='label-input100'>Email *</span>
 					<input
 						className='input100'
@@ -62,11 +82,19 @@ class RegistrationForm extends Component {
 						name='email'
 						value={this.state.email}
 						onChange={this.onChange}
-						placeholder='Enter Your Email '
+						placeholder='Enter Your Email'
 					/>
 				</div>
 
 				<div className='wrap-input100 bg1'>
+					{errors.number && (
+						<span
+							className='label-input100'
+							style={{ color: 'red', fontSize: '12px' }}>
+							{errors.number}
+							<br />
+						</span>
+					)}
 					<span className='label-input100'>Phone *</span>
 					<input
 						className='input100'
