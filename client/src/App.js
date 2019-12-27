@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
 // React Router
@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './components/header/Header';
 import RegistrationFrom from './components/registrationForm/RegistrationForm';
+import Successful from './components/successful/Successful';
 import Footer from './components/footer/Footer';
 
 import './stylling/vendor/bootstrap/css/bootstrap.min.css';
@@ -20,27 +21,51 @@ import './stylling/vendor/noui/nouislider.min.css';
 import './stylling/css/util.css';
 import './stylling/css/main.css';
 
-function App() {
-	return (
-		<Router>
-			{/* Header */}
-			<div className='App-header'>
-				<Header className='App-header' />
-			</div>
+class App extends Component {
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = {
+	// 		completed: false,
+	// 	};
+	// 	this.isRegistered = this.isRegistered.bind(this);
+	// }
 
-			{/* Registration */}
-			<div className='container-contact100'>
-				<div className='wrap-contact100'>
-					<Route exact path='/' component={RegistrationFrom} />
-					<Route exact path='/registration' />
+	// isRegistered(res) {
+	// 	this.setState({ completed: true });
+	// }
+
+	render() {
+		return (
+			<Router>
+				{/* Header */}
+				<div className='App-header'>
+					<Header className='App-header' />
 				</div>
-			</div>
 
-			{/* Footer */}
-			<div className='App-footer'>
-				<Footer />
-			</div>
-		</Router>
-	);
+				{/* Registration */}
+				<div className='container-contact100'>
+					<div className='wrap-contact100'>
+						<Route
+							exact
+							path='/'
+							component={RegistrationFrom}
+							// isRegistered={this.isRegistered}
+						/>
+						<Route
+							exact
+							path='/successful'
+							component={Successful}
+							// data={this.state.completed}
+						/>
+					</div>
+				</div>
+
+				{/* Footer */}
+				<div className='App-footer'>
+					<Footer />
+				</div>
+			</Router>
+		);
+	}
 }
 export default App;

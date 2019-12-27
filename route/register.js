@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
 		email: req.body.email,
 	}).then(data => {
 		if (data) {
-			errors.email = 'Register Already';
+			errors.email = 'Registered Already';
 			res.status(400).json(errors);
 		} else {
 			const newRegistration = new Registration_model({

@@ -9,6 +9,7 @@ class RegistrationForm extends Component {
 			email: '',
 			number: '',
 			errors: '',
+			completed: false,
 		};
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
@@ -27,7 +28,11 @@ class RegistrationForm extends Component {
 
 		axios
 			.post('/register', registrationData)
-			.then(data => console.log(data.data))
+			.then(res => {
+				this.props.history.push('/successful');
+				// this.setState({ completed: true });
+				// this.props.isRegistered(this.state.completed);
+			})
 			.catch(error => {
 				this.setState({ errors: error.response.data });
 			});
@@ -41,7 +46,6 @@ class RegistrationForm extends Component {
 				<span className='contact100-form-title'>
 					Registration For Upcoming Feature
 				</span>
-
 				<div
 					className='wrap-input100 validate-input bg1'
 					data-validate='Please Type Your Name'>
@@ -63,7 +67,6 @@ class RegistrationForm extends Component {
 						placeholder='Enter Your Name'
 					/>
 				</div>
-
 				<div
 					className='wrap-input100 validate-input bg1'
 					data-validate='Enter Your Email (e@a.x)'>
@@ -85,7 +88,6 @@ class RegistrationForm extends Component {
 						placeholder='Enter Your Email'
 					/>
 				</div>
-
 				<div className='wrap-input100 bg1'>
 					{errors.number && (
 						<span
@@ -105,7 +107,6 @@ class RegistrationForm extends Component {
 						placeholder='Enter Number Phone'
 					/>
 				</div>
-
 				<div className='container-contact100-form-btn'>
 					<button className='contact100-form-btn'>
 						<span>
