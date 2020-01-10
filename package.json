@@ -16,8 +16,10 @@
 	"license": "MIT",
 	"dependencies": {
 		"concurrently": "^5.0.2",
+		"country-region-data": "^1.5.1",
 		"express": "^4.17.1",
 		"mongoose": "^5.8.2",
+		"react-select-country-list": "^2.1.2",
 		"validator": "^12.1.0"
 	},
 	"devDependencies": {

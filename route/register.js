@@ -24,9 +24,14 @@ router.post('/', (req, res) => {
 			res.status(400).json(errors);
 		} else {
 			const newRegistration = new Registration_model({
-				name: req.body.name,
+				firstname: req.body.firstname,
+				lastname: req.body.lastname,
+				username: req.body.username,
 				email: req.body.email,
-				number: req.body.number,
+				country: req.body.country,
+				state: req.body.state,
+				zip: req.body.zip,
+				aadhar: req.body.aadhar,
 			});
 
 			newRegistration
